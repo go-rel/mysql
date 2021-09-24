@@ -8,7 +8,7 @@
 
 MySQL adapter for REL.
 
-## Example 
+## Example
 
 ```go
 package main
@@ -35,3 +35,11 @@ func main() {
 	repo.Ping(context.TODO())
 }
 ```
+
+## Supported Driver
+
+- github.com/go-sql-driver/mysql
+
+## Supported Database
+
+- MySQL 5 and 8
