@@ -24,7 +24,7 @@ import (
 )
 
 // New mysql adapter using existing connection.
-// Existing connection nneds to be created with `clientFoundRows=true` options for update and delete to works correctly.
+// Existing connection needs to be created with `clientFoundRows=true` options for update and delete to works correctly.
 func New(database *db.DB) rel.Adapter {
 	var (
 		bufferFactory    = builder.BufferFactory{ArgumentPlaceholder: "?", EscapePrefix: "`", EscapeSuffix: "`"}
