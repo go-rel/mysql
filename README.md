@@ -3,12 +3,12 @@
 [![GoDoc](https://godoc.org/github.com/go-rel/mysql?status.svg)](https://pkg.go.dev/github.com/go-rel/mysql)
 [![Tesst](https://github.com/go-rel/mysql/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/go-rel/mysql/actions/workflows/test.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-rel/mysql)](https://goreportcard.com/report/github.com/go-rel/mysql)
-[![codecov](https://codecov.io/gh/go-rel/mysql/branch/master/graph/badge.svg?token=56qOCsVPJF)](https://codecov.io/gh/go-rel/mysql)
+[![codecov](https://codecov.io/gh/go-rel/mysql/branch/main/graph/badge.svg?token=56qOCsVPJF)](https://codecov.io/gh/go-rel/mysql)
 [![Gitter chat](https://badges.gitter.im/go-rel/rel.png)](https://gitter.im/go-rel/rel)
 
 MySQL adapter for REL.
 
-## Example 
+## Example
 
 ```go
 package main
@@ -35,3 +35,11 @@ func main() {
 	repo.Ping(context.TODO())
 }
 ```
+
+## Supported Driver
+
+- github.com/go-sql-driver/mysql
+
+## Supported Database
+
+- MySQL 5 and 8

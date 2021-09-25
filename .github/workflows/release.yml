@@ -8,7 +8,7 @@ on:
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
-    if: github.repository == 'go-rel/sqlite3'
+    if: github.repository == 'go-rel/mysql'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
