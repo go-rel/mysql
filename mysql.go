@@ -21,6 +21,7 @@ import (
 	"github.com/go-rel/rel"
 	"github.com/go-rel/sql"
 	"github.com/go-rel/sql/builder"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // New mysql adapter using existing connection.
