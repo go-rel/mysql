@@ -27,15 +27,17 @@ import (
 // Existing connection needs to be created with `clientFoundRows=true` options for update and delete to works correctly.
 func New(database *db.DB) rel.Adapter {
 	var (
-		bufferFactory    = builder.BufferFactory{ArgumentPlaceholder: "?", EscapePrefix: "`", EscapeSuffix: "`"}
+		bufferFactory    = builder.BufferFactory{ArgumentPlaceholder: "?", BoolTrueValue: "true", BoolFalseValue: "false", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		filterBuilder    = builder.Filter{}
 		queryBuilder     = builder.Query{BufferFactory: bufferFactory, Filter: filterBuilder}
 		InsertBuilder    = builder.Insert{BufferFactory: bufferFactory, InsertDefaultValues: true}
 		insertAllBuilder = builder.InsertAll{BufferFactory: bufferFactory}
 		updateBuilder    = builder.Update{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		deleteBuilder    = builder.Delete{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
-		tableBuilder     = builder.Table{BufferFactory: bufferFactory, ColumnMapper: sql.ColumnMapper}
-		indexBuilder     = builder.Index{BufferFactory: bufferFactory, DropIndexOnTable: true}
+		ddlBufferFactory = builder.BufferFactory{InlineValues: true, BoolTrueValue: "true", BoolFalseValue: "true", Quoter: Quote{}, ValueConverter: ValueConvert{}}
+		ddlQueryBuilder  = builder.Query{BufferFactory: ddlBufferFactory, Filter: filterBuilder}
+		tableBuilder     = builder.Table{BufferFactory: ddlBufferFactory}
+		indexBuilder     = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder}
 	)
 
 	return &sql.SQL{
