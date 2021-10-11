@@ -22,6 +22,7 @@ func (q Quote) Value(v interface{}) string {
 	default:
 		panic("unsupported value")
 	case string:
+		// TODO: Need to check on connection for NO_BACKSLASH_ESCAPES
 		rv := []rune(v)
 		buf := make([]rune, len(rv)*2)
 		pos := 0

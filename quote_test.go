@@ -3,9 +3,17 @@ package mysql
 import (
 	"database/sql/driver"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func TestQuote_Panic(t *testing.T) {
+	quoter := Quote{}
+	assert.PanicsWithValue(t, "unsupported value", func() {
+		quoter.Value(1)
+	})
+}
 
 func TestQuote_ID(t *testing.T) {
 	quoter := Quote{}
@@ -58,4 +66,11 @@ func TestValueConvert_CustomType(t *testing.T) {
 	v, err := valuer.ConvertValue(customType(1))
 	assert.EqualError(t, err, "non-Value type int returned from Value")
 	assert.Nil(t, v)
+}
+
+func TestValueConvert_DateTime(t *testing.T) {
+	valuer := ValueConvert{}
+	v, err := valuer.ConvertValue(time.Unix(1633934368, 0).UTC())
+	assert.NoError(t, err)
+	assert.Equal(t, "2021-10-11 06:39:28", v)
 }

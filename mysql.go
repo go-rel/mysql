@@ -36,8 +36,8 @@ func New(database *db.DB) rel.Adapter {
 		deleteBuilder    = builder.Delete{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		ddlBufferFactory = builder.BufferFactory{InlineValues: true, BoolTrueValue: "true", BoolFalseValue: "true", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		ddlQueryBuilder  = builder.Query{BufferFactory: ddlBufferFactory, Filter: filterBuilder}
-		tableBuilder     = builder.Table{BufferFactory: ddlBufferFactory}
-		indexBuilder     = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder}
+		tableBuilder     = builder.Table{BufferFactory: ddlBufferFactory, ColumnMapper: sql.ColumnMapper}
+		indexBuilder     = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder, DropIndexOnTable: true}
 	)
 
 	return &sql.SQL{
