@@ -43,10 +43,11 @@ func main() {
 ## Supported Database
 
 - MySQL 5 and 8
+- MariaDB 10
 
 ## Testing
 
-### Start PostgreSQL server in Docker
+### Start MariaDB server in Docker
 
 ```console
 docker run -it --rm -p 3307:3306 -e "MARIADB_ROOT_PASSWORD=test" -e "MARIADB_DATABASE=rel_test" mariadb:10
