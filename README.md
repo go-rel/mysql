@@ -43,3 +43,18 @@ func main() {
 ## Supported Database
 
 - MySQL 5 and 8
+- MariaDB 10
+
+## Testing
+
+### Start MariaDB server in Docker
+
+```console
+docker run -it --rm -p 3307:3306 -e "MARIADB_ROOT_PASSWORD=test" -e "MARIADB_DATABASE=rel_test" mariadb:10
+```
+
+### Run tests
+
+```console
+MYSQL_DATABASE="root:test@tcp(localhost:3307)/rel_test" go test ./...
+```
