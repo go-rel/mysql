@@ -36,7 +36,7 @@ func New(database *db.DB) rel.Adapter {
 		deleteBuilder    = builder.Delete{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		ddlBufferFactory = builder.BufferFactory{InlineValues: true, BoolTrueValue: "true", BoolFalseValue: "false", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		ddlQueryBuilder  = builder.Query{BufferFactory: ddlBufferFactory, Filter: filterBuilder}
-		tableBuilder     = builder.Table{BufferFactory: ddlBufferFactory, ColumnMapper: sql.ColumnMapper}
+		tableBuilder     = builder.Table{BufferFactory: ddlBufferFactory, ColumnMapper: columnMapper}
 		indexBuilder     = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder, DropIndexOnTable: true}
 	)
 
@@ -114,6 +114,15 @@ func errorMapper(err error) error {
 		}
 	default:
 		return err
+	}
+}
+
+func columnMapper(column *rel.Column) (string, int, int) {
+	switch column.Type {
+	case rel.JSON:
+		return "JSON", 0, 0
+	default:
+		return sql.ColumnMapper(column)
 	}
 }
 
