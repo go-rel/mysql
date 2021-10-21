@@ -14,7 +14,7 @@ func (q Quote) ID(name string) string {
 	if end > -1 {
 		name = name[:end]
 	}
-	return "`" + strings.Replace(name, "`", "``", -1) + "`"
+	return "`" + strings.ReplaceAll(name, "`", "``") + "`"
 }
 
 func (q Quote) Value(v interface{}) string {
