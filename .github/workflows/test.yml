@@ -30,21 +30,21 @@ jobs:
           MYSQL_DATABASE: rel:rel@(127.0.0.1:3306)/rel_test
         run: |
           sleep 15
-          go test -race ./...
+          go test -race -tags=singlenode ./...
         if: matrix.mysql != 8
       - name: Coverage
         env:
           MYSQL_DATABASE: rel:rel@(127.0.0.1:3306)/rel_test
         run: |
           sleep 15
-          go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+          go test -race -tags=singlenode -coverprofile=coverage.txt -covermode=atomic ./...
         if: matrix.mysql == 8
       - name: Codecov
         uses: codecov/codecov-action@v1
         if: matrix.mysql == 8
 
   primaryreplica:
-    name: Primary/Replica
+    name: Primary Replica
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.x
