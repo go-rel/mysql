@@ -68,6 +68,16 @@ func Open(dsn string) (rel.Adapter, error) {
 	return New(database), err
 }
 
+// MustOpen mysql connection using dsn.
+func MustOpen(dsn string) rel.Adapter {
+	var (
+		adapter, err = Open(dsn)
+	)
+
+	check(err)
+	return adapter
+}
+
 func incrementFunc(adapter sql.SQL) int {
 	var (
 		variable  string

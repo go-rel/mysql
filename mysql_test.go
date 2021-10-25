@@ -22,11 +22,7 @@ func dsn() string {
 	return "root@tcp(localhost:3306)/rel_test?charset=utf8&parseTime=True&loc=Local"
 }
 
-func TestAdapter_specs(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
-	defer adapter.Close()
-
+func AdapterSpecs(t *testing.T, adapter rel.Adapter) {
 	repo := rel.New(adapter)
 
 	// Prepare tables
@@ -94,6 +90,13 @@ func TestAdapter_specs(t *testing.T) {
 	specs.UniqueConstraintOnUpdate(t, repo)
 	specs.ForeignKeyConstraintOnInsert(t, repo)
 	specs.ForeignKeyConstraintOnUpdate(t, repo)
+}
+
+func TestAdapter_specs(t *testing.T) {
+	adapter, err := Open(dsn())
+	assert.Nil(t, err)
+	defer adapter.Close()
+	AdapterSpecs(t, adapter)
 }
 
 func TestAdapter_Open(t *testing.T) {
