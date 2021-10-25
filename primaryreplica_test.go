@@ -1,3 +1,6 @@
+//go:build primaryreplica
+// +build primaryreplica
+
 package mysql
 
 import (
