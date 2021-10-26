@@ -23,8 +23,10 @@ func dsn() string {
 }
 
 func TestAdapter_specs(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	var (
+		adapter = MustOpen(dsn())
+	)
+
 	defer adapter.Close()
 	AdapterSpecs(t, adapter)
 }
