@@ -11,6 +11,8 @@ github.com/go-rel/rel v0.27.0/go.mod h1:zaIYPmM3AfJrh0xBmm7KoVKRgTNvr0cgZfcJ88gV
 github.com/go-rel/rel v0.27.1-0.20211025121125-ce825c5f206b/go.mod h1:ySMUg3VfQk7q2c1HGNFg+GT3BktxdJt21uQle0gJyPU=
 github.com/go-rel/rel v0.27.1-0.20211025125059-b894e02c54be h1:jJHfWxxF7UMgHYREW/uXwO2LkBZTtgLD+hmfRhuJYMI=
 github.com/go-rel/rel v0.27.1-0.20211025125059-b894e02c54be/go.mod h1:ySMUg3VfQk7q2c1HGNFg+GT3BktxdJt21uQle0gJyPU=
+github.com/go-rel/rel v0.27.1-0.20211026002856-24cafb148d35 h1:s8qZ6IO+r3dgdD+uw5vv1PfGAX7heNEQ7UAncWghmxY=
+github.com/go-rel/rel v0.27.1-0.20211026002856-24cafb148d35/go.mod h1:ySMUg3VfQk7q2c1HGNFg+GT3BktxdJt21uQle0gJyPU=
 github.com/go-rel/reltest v0.3.0/go.mod h1:Ph5A7HLoYDRPSEuRKnFBqiuxe1Bs0EnIwp7HtZYJmT4=
 github.com/go-rel/sql v0.5.0 h1:+TVS9JvEl06Q8rswwuWlY6VZ+gwSBX9um+vKuZ9gsyY=
 github.com/go-rel/sql v0.5.0/go.mod h1:2YwenlIaHpTqdD/KPVYG7Y5Ub1+sn1winlC8TrighRU=
