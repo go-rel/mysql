@@ -20,7 +20,7 @@ func dsn() string {
 		return os.Getenv("MYSQL_DATABASE") + "?charset=utf8&parseTime=True&loc=Local"
 	}
 
-	return "root@tcp(localhost:3306)/rel_test?charset=utf8&parseTime=True&loc=Local"
+	return "rel:rel@tcp(localhost:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"
 }
 
 func AdapterSpecs(t *testing.T, repo rel.Repository) {
@@ -111,8 +111,8 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 	}
 
 	adapter := primaryreplica.New(
-		MustOpen("root:my_root_password@tcp(localhost:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"),
-		MustOpen("root:my_root_password@tcp(localhost:23307)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+		MustOpen("rel:rel@tcp(localhost:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+		MustOpen("rel:rel@tcp(localhost:23307)/rel_test?charset=utf8&parseTime=True&loc=Local"),
 	)
 	defer adapter.Close()
 
