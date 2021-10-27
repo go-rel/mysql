@@ -1,6 +1,3 @@
-//go:build singlenode
-// +build singlenode
-
 package mysql
 
 import (
@@ -9,6 +6,9 @@ import (
 	"os"
 	"testing"
 
+	"github.com/go-rel/primaryreplica"
+	"github.com/go-rel/rel"
+	"github.com/go-rel/rel/adapter/specs"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -22,13 +22,101 @@ func dsn() string {
 	return "root@tcp(localhost:3306)/rel_test?charset=utf8&parseTime=True&loc=Local"
 }
 
-func TestAdapter_specs(t *testing.T) {
-	var (
-		adapter = MustOpen(dsn())
-	)
+func AdapterSpecs(t *testing.T, repo rel.Repository) {
+	// Prepare tables
+	teardown := specs.Setup(t, repo)
+	defer teardown()
 
+	// Migration Specs
+	// - Rename column is only supported by MySQL 8.0
+	specs.Migrate(t, repo, specs.SkipRenameColumn)
+
+	// Query Specs
+	specs.Query(t, repo)
+	specs.QueryJoin(t, repo)
+	specs.QueryNotFound(t, repo)
+	specs.QueryWhereSubQuery(t, repo)
+
+	// Preload specs
+	specs.PreloadHasMany(t, repo)
+	specs.PreloadHasManyWithQuery(t, repo)
+	specs.PreloadHasManySlice(t, repo)
+	specs.PreloadHasOne(t, repo)
+	specs.PreloadHasOneWithQuery(t, repo)
+	specs.PreloadHasOneSlice(t, repo)
+	specs.PreloadBelongsTo(t, repo)
+	specs.PreloadBelongsToWithQuery(t, repo)
+	specs.PreloadBelongsToSlice(t, repo)
+
+	// Aggregate Specs
+	specs.Aggregate(t, repo)
+
+	// Insert Specs
+	specs.Insert(t, repo)
+	specs.InsertHasMany(t, repo)
+	specs.InsertHasOne(t, repo)
+	specs.InsertBelongsTo(t, repo)
+	specs.Inserts(t, repo)
+	specs.InsertAll(t, repo)
+	specs.InsertAllPartialCustomPrimary(t, repo)
+
+	// Update Specs
+	specs.Update(t, repo)
+	specs.UpdateNotFound(t, repo)
+	specs.UpdateHasManyInsert(t, repo)
+	specs.UpdateHasManyUpdate(t, repo)
+	specs.UpdateHasManyReplace(t, repo)
+	specs.UpdateHasOneInsert(t, repo)
+	specs.UpdateHasOneUpdate(t, repo)
+	specs.UpdateBelongsToInsert(t, repo)
+	specs.UpdateBelongsToUpdate(t, repo)
+	specs.UpdateAtomic(t, repo)
+	specs.Updates(t, repo)
+	specs.UpdateAny(t, repo)
+
+	// Delete specs
+	specs.Delete(t, repo)
+	specs.DeleteBelongsTo(t, repo)
+	specs.DeleteHasOne(t, repo)
+	specs.DeleteHasMany(t, repo)
+	specs.DeleteAll(t, repo)
+	specs.DeleteAny(t, repo)
+
+	// Constraint specs
+	// - Check constraint is not supported by mysql
+	specs.UniqueConstraintOnInsert(t, repo)
+	specs.UniqueConstraintOnUpdate(t, repo)
+	specs.ForeignKeyConstraintOnInsert(t, repo)
+	specs.ForeignKeyConstraintOnUpdate(t, repo)
+}
+
+func TestAdapter_specs(t *testing.T) {
+	if os.Getenv("TEST_PRIMARY_REPLICA") == "true" {
+		t.Log("Skipping single node specs")
+		return
+	}
+
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
-	AdapterSpecs(t, adapter)
+
+	repo := rel.New(adapter)
+	AdapterSpecs(t, repo)
+}
+
+func TestAdapter_PrimaryReplica_specs(t *testing.T) {
+	if os.Getenv("TEST_PRIMARY_REPLICA") != "true" {
+		t.Log("Skipping primary replica specs")
+		return
+	}
+
+	adapter := primaryreplica.New(
+		MustOpen("root:my_root_password@tcp(localhost:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+		MustOpen("root:my_root_password@tcp(localhost:23307)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+	)
+	defer adapter.Close()
+
+	repo := rel.New(adapter)
+	AdapterSpecs(t, repo)
 }
 
 func TestAdapter_Open(t *testing.T) {

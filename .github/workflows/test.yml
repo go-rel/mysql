@@ -30,14 +30,14 @@ jobs:
           MYSQL_DATABASE: rel:rel@(127.0.0.1:3306)/rel_test
         run: |
           sleep 15
-          go test -race -tags=singlenode ./...
+          go test -race ./...
         if: matrix.mysql != 8
       - name: Coverage
         env:
           MYSQL_DATABASE: rel:rel@(127.0.0.1:3306)/rel_test
         run: |
           sleep 15
-          go test -race -tags=singlenode -coverprofile=coverage.txt -covermode=atomic ./...
+          go test -race -coverprofile=coverage.txt -covermode=atomic ./...
         if: matrix.mysql == 8
       - name: Codecov
         uses: codecov/codecov-action@v1
@@ -54,6 +54,8 @@ jobs:
       - name: Start mysql containers
         run: docker-compose -f "docker-compose.yml" up -d --build
       - name: Test
+        env:
+          TEST_PRIMARY_REPLICA: 'true'
         run: |
           sleep 15
-          go test -race -tags=primaryreplica ./...
+          go test -race ./...
