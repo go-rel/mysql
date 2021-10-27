@@ -9,6 +9,7 @@ import (
 	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
 	"github.com/go-rel/rel/adapter/specs"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
 )
 
