@@ -36,6 +36,35 @@ func main() {
 }
 ```
 
+## Example Replication (Source/Replica)
+
+```go
+package main
+
+import (
+	"context"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-rel/primaryreplica"
+	"github.com/go-rel/mysql"
+	"github.com/go-rel/rel"
+)
+
+func main() {
+	// open mysql connection.
+	// note: `clientFoundRows=true` is required for update and delete to works correctly.
+	adapter := primaryreplica.New(
+		mysql.MustOpen("root@(source:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+		mysql.MustOpen("root@(replica:23307)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+	)
+	defer adapter.Close()
+
+	// initialize REL's repo.
+	repo := rel.New(adapter)
+	repo.Ping(context.TODO())
+}
+```
+
 ## Supported Driver
 
 - github.com/go-sql-driver/mysql

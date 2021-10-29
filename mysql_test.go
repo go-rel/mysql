@@ -6,6 +6,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
 	"github.com/go-rel/rel/adapter/specs"
 	_ "github.com/go-sql-driver/mysql"
@@ -19,16 +20,10 @@ func dsn() string {
 		return os.Getenv("MYSQL_DATABASE") + "?charset=utf8&parseTime=True&loc=Local"
 	}
 
-	return "root@tcp(localhost:3306)/rel_test?charset=utf8&parseTime=True&loc=Local"
+	return "rel:rel@tcp(localhost:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"
 }
 
-func TestAdapter_specs(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
-	defer adapter.Close()
-
-	repo := rel.New(adapter)
-
+func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	// Prepare tables
 	teardown := specs.Setup(t, repo)
 	defer teardown()
@@ -94,6 +89,35 @@ func TestAdapter_specs(t *testing.T) {
 	specs.UniqueConstraintOnUpdate(t, repo)
 	specs.ForeignKeyConstraintOnInsert(t, repo)
 	specs.ForeignKeyConstraintOnUpdate(t, repo)
+}
+
+func TestAdapter_specs(t *testing.T) {
+	if os.Getenv("TEST_PRIMARY_REPLICA") == "true" {
+		t.Log("Skipping single node specs")
+		return
+	}
+
+	adapter := MustOpen(dsn())
+	defer adapter.Close()
+
+	repo := rel.New(adapter)
+	AdapterSpecs(t, repo)
+}
+
+func TestAdapter_PrimaryReplica_specs(t *testing.T) {
+	if os.Getenv("TEST_PRIMARY_REPLICA") != "true" {
+		t.Log("Skipping primary replica specs")
+		return
+	}
+
+	adapter := primaryreplica.New(
+		MustOpen("rel:rel@tcp(localhost:23306)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+		MustOpen("rel:rel@tcp(localhost:23307)/rel_test?charset=utf8&parseTime=True&loc=Local"),
+	)
+	defer adapter.Close()
+
+	repo := rel.New(adapter)
+	AdapterSpecs(t, repo)
 }
 
 func TestAdapter_Open(t *testing.T) {
