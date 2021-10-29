@@ -6,6 +6,8 @@ github.com/fsnotify/fsnotify v1.4.9 h1:hsms1Qyu0jgnwNXIxa+/V/PDsU6CfLf6CNO8H7IWo
 github.com/fsnotify/fsnotify v1.4.9/go.mod h1:znqG4EE+3YCdAaPaxE2ZRY/06pZUdp0tY4IgpuI1SZQ=
 github.com/go-rel/primaryreplica v0.0.0-20211025121817-20f0f4c6065e h1:q9sKJ85YkM4ZW6qJlGjbSBwIcW3txoHnsvoy5O5BBBI=
 github.com/go-rel/primaryreplica v0.0.0-20211025121817-20f0f4c6065e/go.mod h1:Frpc0g1ZSFDDSbge9PNl5p1bQAVGXJCxJI8a+BS/nx4=
+github.com/go-rel/primaryreplica v0.1.0 h1:ARt8QHa55Tmz7hJYtGunz4B3THQiFDOJb0yZBgnrzx4=
+github.com/go-rel/primaryreplica v0.1.0/go.mod h1:j/b9RmL4gdnuQMh4UPBeE1h6RpQCtiUIC9QHIvgjIs8=
 github.com/go-rel/rel v0.25.0/go.mod h1:/VBLj1U4ZVb53aB3n22RQwX0V9DvckohseDJQibn2Rs=
 github.com/go-rel/rel v0.27.0/go.mod h1:zaIYPmM3AfJrh0xBmm7KoVKRgTNvr0cgZfcJ88gVA2U=
 github.com/go-rel/rel v0.27.1-0.20211025121125-ce825c5f206b/go.mod h1:ySMUg3VfQk7q2c1HGNFg+GT3BktxdJt21uQle0gJyPU=
@@ -13,6 +15,8 @@ github.com/go-rel/rel v0.27.1-0.20211025125059-b894e02c54be h1:jJHfWxxF7UMgHYREW
 github.com/go-rel/rel v0.27.1-0.20211025125059-b894e02c54be/go.mod h1:ySMUg3VfQk7q2c1HGNFg+GT3BktxdJt21uQle0gJyPU=
 github.com/go-rel/rel v0.27.1-0.20211026002856-24cafb148d35 h1:s8qZ6IO+r3dgdD+uw5vv1PfGAX7heNEQ7UAncWghmxY=
 github.com/go-rel/rel v0.27.1-0.20211026002856-24cafb148d35/go.mod h1:ySMUg3VfQk7q2c1HGNFg+GT3BktxdJt21uQle0gJyPU=
+github.com/go-rel/rel v0.28.0 h1:gRcQjNbwuFL35RxeHFMKSy3a/xV+WbtkA8wP24dWPEA=
+github.com/go-rel/rel v0.28.0/go.mod h1:zaIYPmM3AfJrh0xBmm7KoVKRgTNvr0cgZfcJ88gVA2U=
 github.com/go-rel/reltest v0.3.0/go.mod h1:Ph5A7HLoYDRPSEuRKnFBqiuxe1Bs0EnIwp7HtZYJmT4=
 github.com/go-rel/sql v0.5.0 h1:+TVS9JvEl06Q8rswwuWlY6VZ+gwSBX9um+vKuZ9gsyY=
 github.com/go-rel/sql v0.5.0/go.mod h1:2YwenlIaHpTqdD/KPVYG7Y5Ub1+sn1winlC8TrighRU=
