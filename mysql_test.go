@@ -8,7 +8,7 @@ import (
 
 	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
-	"github.com/go-rel/rel/adapter/specs"
+	"github.com/go-rel/sql/specs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
 )
@@ -25,12 +25,12 @@ func dsn() string {
 
 func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	// Prepare tables
-	teardown := specs.Setup(t, repo)
+	teardown := specs.Setup(repo)
 	defer teardown()
 
 	// Migration Specs
 	// - Rename column is only supported by MySQL 8.0
-	specs.Migrate(t, repo, specs.SkipRenameColumn)
+	specs.Migrate(specs.SkipRenameColumn)
 
 	// Query Specs
 	specs.Query(t, repo)
