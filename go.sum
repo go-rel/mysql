@@ -4,8 +4,8 @@ github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
 github.com/fsnotify/fsnotify v1.4.9 h1:hsms1Qyu0jgnwNXIxa+/V/PDsU6CfLf6CNO8H7IWoS4=
 github.com/fsnotify/fsnotify v1.4.9/go.mod h1:znqG4EE+3YCdAaPaxE2ZRY/06pZUdp0tY4IgpuI1SZQ=
-github.com/go-rel/primaryreplica v0.1.0 h1:ARt8QHa55Tmz7hJYtGunz4B3THQiFDOJb0yZBgnrzx4=
-github.com/go-rel/primaryreplica v0.1.0/go.mod h1:j/b9RmL4gdnuQMh4UPBeE1h6RpQCtiUIC9QHIvgjIs8=
+github.com/go-rel/primaryreplica v0.2.0 h1:XFpuzBHOWuxeJtjaTgSPfvzagHLNNcgWCa+ikpes5F0=
+github.com/go-rel/primaryreplica v0.2.0/go.mod h1:uppLs0JDaP++S1gR4PM8Wac0Ut9rnx5Db0RQoQVa4qU=
 github.com/go-rel/rel v0.28.0/go.mod h1:zaIYPmM3AfJrh0xBmm7KoVKRgTNvr0cgZfcJ88gVA2U=
 github.com/go-rel/rel v0.30.0 h1:cROr0KQx1WJCx+LGEs885yxt2UsO54vOQcgsXoeGTPk=
 github.com/go-rel/rel v0.30.0/go.mod h1:Wu6HB6x0oIiEOdUJClwmn7ByCmdL73U5gItAYObyyuo=
