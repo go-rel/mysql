@@ -60,6 +60,10 @@ func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	specs.Inserts(t, repo)
 	specs.InsertAll(t, repo)
 	specs.InsertAllPartialCustomPrimary(t, repo)
+	specs.InsertOnConflictIgnore(t, repo)
+	specs.InsertOnConflictReplace(t, repo)
+	specs.InsertAllOnConflictIgnore(t, repo)
+	specs.InsertAllOnConflictReplace(t, repo)
 
 	// Update Specs
 	specs.Update(t, repo)
