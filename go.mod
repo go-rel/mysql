@@ -3,9 +3,9 @@ module github.com/go-rel/mysql
 go 1.17
 
 require (
-	github.com/go-rel/primaryreplica v0.3.1-0.20220312084254-4829397400e6
-	github.com/go-rel/rel v0.32.1-0.20220312054643-01a18742cb55
-	github.com/go-rel/sql v0.8.1-0.20220312090959-765b2c0aa060
+	github.com/go-rel/primaryreplica v0.4.0
+	github.com/go-rel/rel v0.33.1
+	github.com/go-rel/sql v0.9.1
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/stretchr/testify v1.7.0
 )
