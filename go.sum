@@ -9,8 +9,8 @@ github.com/go-rel/primaryreplica v0.4.0/go.mod h1:HUBz+BUvUcg9JpRRk9PstV9J/qlEOq
 github.com/go-rel/rel v0.33.1/go.mod h1:DhB9Xmt/ymaumJAB6Z3Kq+IybLwQhhrzr6ZLeXMygPo=
 github.com/go-rel/rel v0.34.0 h1:dynBkxkVOHxFMHtu3p8vdvAMjjCm+Yi2J0tJsjeoVjQ=
 github.com/go-rel/rel v0.34.0/go.mod h1:YDHtnJhlaiSjANLGiZXvI57jg1amfpJSJlOimq6WJTE=
-github.com/go-rel/sql v0.9.1 h1:2tHu4U4Bk1DWKvzsitwcvv1sk6aGcxPh3LYJXspgk8w=
-github.com/go-rel/sql v0.9.1/go.mod h1:4Ghpv6kjZG+EwHXRApJfo/Tg5K3rAYmxJq8wVcblU8g=
+github.com/go-rel/sql v0.10.0 h1:VJmdKMdZthpk74GshorDBFjraios3FrFtUh+wjobh7E=
+github.com/go-rel/sql v0.10.0/go.mod h1:ZMieSY23hb3sw/IzUiTRORaciM/kdXIsxoBdAmNqsFY=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
