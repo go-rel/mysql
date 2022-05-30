@@ -8,8 +8,8 @@ github.com/go-rel/primaryreplica v0.4.0 h1:lhU+4dh0/sDQEs602Chiz0SJDXewPU06baWQl
 github.com/go-rel/primaryreplica v0.4.0/go.mod h1:HUBz+BUvUcg9JpRRk9PstV9J/qlEOqaHIIllGncbUs8=
 github.com/go-rel/rel v0.33.1/go.mod h1:DhB9Xmt/ymaumJAB6Z3Kq+IybLwQhhrzr6ZLeXMygPo=
 github.com/go-rel/rel v0.34.0/go.mod h1:YDHtnJhlaiSjANLGiZXvI57jg1amfpJSJlOimq6WJTE=
-github.com/go-rel/rel v0.34.1 h1:814BmKFzuyZAxHFxULV98b6CAOR5QyHTMh7JSyojcgo=
-github.com/go-rel/rel v0.34.1/go.mod h1:mXRZv7sVwtc/ztcY6dgzE5RV5MC+4/2PHPQUBAGiUG8=
+github.com/go-rel/rel v0.35.0 h1:A+jyWX8m4PSkXeFC22zq1hUXoLs/tXeP8Oitc3ZMqTg=
+github.com/go-rel/rel v0.35.0/go.mod h1:mXRZv7sVwtc/ztcY6dgzE5RV5MC+4/2PHPQUBAGiUG8=
 github.com/go-rel/sql v0.10.0 h1:VJmdKMdZthpk74GshorDBFjraios3FrFtUh+wjobh7E=
 github.com/go-rel/sql v0.10.0/go.mod h1:ZMieSY23hb3sw/IzUiTRORaciM/kdXIsxoBdAmNqsFY=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
