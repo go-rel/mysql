@@ -9,8 +9,8 @@ github.com/go-rel/primaryreplica v0.4.0/go.mod h1:HUBz+BUvUcg9JpRRk9PstV9J/qlEOq
 github.com/go-rel/rel v0.33.1/go.mod h1:DhB9Xmt/ymaumJAB6Z3Kq+IybLwQhhrzr6ZLeXMygPo=
 github.com/go-rel/rel v0.36.1-0.20220702152622-d417e5ffecad h1:L2qTCKr1RiJkL7D9/td5PPflOMDbRj/Gw8Zm65mb5ZQ=
 github.com/go-rel/rel v0.36.1-0.20220702152622-d417e5ffecad/go.mod h1:Zq18pQqXZbDh2JBCo29jgt+y90nZWkUvI+W9Ls29ans=
-github.com/go-rel/sql v0.10.1-0.20220702153315-ce533701bc79 h1:dwWDZaLI1vMoQug3BD7FTc9ZXYypMkOcnzQOcZk8SaA=
-github.com/go-rel/sql v0.10.1-0.20220702153315-ce533701bc79/go.mod h1:MGKTLv/kQlJ9WLsyq2SvcqQV2/+ZpFJTmcTuhrI+LuQ=
+github.com/go-rel/sql v0.10.1-0.20220702154443-93b9bed9b487 h1:uwt+i3KR+xrvWeo4gh73CE/wRRKbUAXYveWxQGbZ2U0=
+github.com/go-rel/sql v0.10.1-0.20220702154443-93b9bed9b487/go.mod h1:MGKTLv/kQlJ9WLsyq2SvcqQV2/+ZpFJTmcTuhrI+LuQ=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=

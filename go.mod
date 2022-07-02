@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/go-rel/primaryreplica v0.4.0
 	github.com/go-rel/rel v0.36.1-0.20220702152622-d417e5ffecad
-	github.com/go-rel/sql v0.10.1-0.20220702153315-ce533701bc79
+	github.com/go-rel/sql v0.10.1-0.20220702154443-93b9bed9b487
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/stretchr/testify v1.8.0
 )
