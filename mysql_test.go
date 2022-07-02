@@ -35,6 +35,7 @@ func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	// Query Specs
 	specs.Query(t, repo)
 	specs.QueryJoin(t, repo)
+	specs.QueryJoinAssoc(t, repo)
 	specs.QueryNotFound(t, repo)
 	specs.QueryWhereSubQuery(t, repo)
 
