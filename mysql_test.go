@@ -125,20 +125,6 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 	AdapterSpecs(t, repo)
 }
 
-func TestAdapter_Open(t *testing.T) {
-	// with parameter
-	assert.NotPanics(t, func() {
-		adapter, _ := Open("root@tcp(localhost:3306)/rel_test?charset=utf8")
-		defer adapter.Close()
-	})
-
-	// without paremeter
-	assert.NotPanics(t, func() {
-		adapter, _ := Open("root@tcp(localhost:3306)/rel_test")
-		defer adapter.Close()
-	})
-}
-
 func TestAdapter_Transaction_commitError(t *testing.T) {
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
@@ -162,6 +148,14 @@ func TestAdapter_Exec_error(t *testing.T) {
 
 	_, _, err = adapter.Exec(ctx, "error", nil)
 	assert.NotNil(t, err)
+}
+
+func TestRewriteDsn(t *testing.T) {
+	// with parameter
+	assert.Contains(t, rewriteDsn("root@tcp(localhost:3306)/rel_test?charset=utf8"), "&clientFoundRows=true")
+
+	// without paremeter
+	assert.Contains(t, rewriteDsn("root@tcp(localhost:3306)/rel_test"), "?clientFoundRows=true")
 }
 
 func TestCheck(t *testing.T) {
