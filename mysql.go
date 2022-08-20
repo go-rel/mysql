@@ -56,6 +56,11 @@ func New(database *db.DB) rel.Adapter {
 
 // Open mysql connection using dsn.
 func Open(dsn string) (rel.Adapter, error) {
+	var database, err = db.Open("mysql", rewriteDsn(dsn))
+	return New(database), err
+}
+
+func rewriteDsn(dsn string) string {
 	// force clientFoundRows=true
 	// this allows not found record check when updating a record.
 	if strings.ContainsRune(dsn, '?') {
@@ -64,8 +69,7 @@ func Open(dsn string) (rel.Adapter, error) {
 		dsn += "?clientFoundRows=true"
 	}
 
-	var database, err = db.Open("mysql", dsn)
-	return New(database), err
+	return dsn
 }
 
 // MustOpen mysql connection using dsn.
