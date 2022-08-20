@@ -126,15 +126,20 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 }
 
 func TestAdapter_Open(t *testing.T) {
+	dsn := "root@tcp(localhost:3306)"
+	if os.Getenv("MYSQL_DATABASE") != "" {
+		dsn = os.Getenv("MYSQL_DATABASE")
+	}
+
 	// with parameter
 	assert.NotPanics(t, func() {
-		adapter, _ := Open("root@tcp(localhost:3306)/rel_test?charset=utf8")
+		adapter, _ := Open(dsn + "/rel_test?charset=utf8")
 		defer adapter.Close()
 	})
 
 	// without paremeter
 	assert.NotPanics(t, func() {
-		adapter, _ := Open("root@tcp(localhost:3306)/rel_test")
+		adapter, _ := Open(dsn + "/rel_test")
 		defer adapter.Close()
 	})
 }
