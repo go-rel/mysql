@@ -8,6 +8,7 @@ import (
 
 	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
+	"github.com/go-rel/sql"
 	"github.com/go-rel/sql/specs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
@@ -162,4 +163,32 @@ func TestCheck(t *testing.T) {
 	assert.Panics(t, func() {
 		check(errors.New("error"))
 	})
+}
+
+func TestAdapter_TableBuilder(t *testing.T) {
+	adapter, err := Open(dsn())
+	assert.Nil(t, err)
+	defer adapter.Close()
+
+	tests := []struct {
+		result string
+		table  rel.Table
+	}{
+		{
+			result: "ALTER TABLE `table` DROP FOREIGN KEY `fk`;",
+			table: rel.Table{
+				Op:   rel.SchemaAlter,
+				Name: "table",
+				Definitions: []rel.TableDefinition{
+					rel.Key{Op: rel.SchemaDrop, Name: "fk", Type: rel.ForeignKey},
+				},
+			},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.result, func(t *testing.T) {
+			assert.Equal(t, test.result, adapter.(*sql.SQL).TableBuilder.Build(test.table))
+		})
+	}
 }
