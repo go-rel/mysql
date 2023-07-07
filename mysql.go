@@ -16,6 +16,7 @@ package mysql
 
 import (
 	db "database/sql"
+	"fmt"
 	"strings"
 
 	"github.com/go-rel/rel"
@@ -143,7 +144,7 @@ func dropKeyMapper(typ rel.KeyType) string {
 		return "FOREIGN KEY"
 	}
 
-	return ""
+	panic(fmt.Sprintf("drop key: unsupported key type `%s`", typ))
 }
 
 func check(err error) {
