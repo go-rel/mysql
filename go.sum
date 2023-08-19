@@ -9,6 +9,8 @@ github.com/go-rel/primaryreplica v0.4.0/go.mod h1:HUBz+BUvUcg9JpRRk9PstV9J/qlEOq
 github.com/go-rel/rel v0.33.1/go.mod h1:DhB9Xmt/ymaumJAB6Z3Kq+IybLwQhhrzr6ZLeXMygPo=
 github.com/go-rel/rel v0.39.0 h1:2zmK8kazM82iRRfWX7+mm1MxDkGKDj2W+xJLjguli5U=
 github.com/go-rel/rel v0.39.0/go.mod h1:yN6+aimHyRIzbuWFe5DaxiZPuVuPfd7GlLpy/YTqTUg=
+github.com/go-rel/rel v0.39.1-0.20230819102717-7d5559a52332 h1:9mt0Dcejz1ejIJYKesvDZxxKv64qjSk5jw4aTRiSpKM=
+github.com/go-rel/rel v0.39.1-0.20230819102717-7d5559a52332/go.mod h1:6opWRxsoHoDq67fIDnsmcmnojpskWpPqCs0AoL/UrEU=
 github.com/go-rel/sql v0.14.0 h1:pTg40wvSrOr9cNcm76mHqPe0oRg6CRf92xfH6A3+y/g=
 github.com/go-rel/sql v0.14.0/go.mod h1:gtbpaNkNDNrf9LceaDWhAr6Im+Vd2NgBT93AOOM6UOc=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
