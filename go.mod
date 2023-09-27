@@ -1,11 +1,13 @@
 module github.com/go-rel/mysql
 
-go 1.20
+go 1.21
+
+toolchain go1.21.0
 
 require (
 	github.com/go-rel/primaryreplica v0.5.0
 	github.com/go-rel/rel v0.40.0
-	github.com/go-rel/sql v0.15.0
+	github.com/go-rel/sql v0.15.1-0.20230926233117-4af81443c5e1
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/stretchr/testify v1.8.4
 )

@@ -38,7 +38,7 @@ func New(database *db.DB) rel.Adapter {
 		deleteBuilder     = builder.Delete{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		ddlBufferFactory  = builder.BufferFactory{InlineValues: true, BoolTrueValue: "true", BoolFalseValue: "false", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		ddlQueryBuilder   = builder.Query{BufferFactory: ddlBufferFactory, Filter: filterBuilder}
-		tableBuilder      = builder.Table{BufferFactory: ddlBufferFactory, ColumnMapper: columnMapper, DropKeyMapper: dropKeyMapper}
+		tableBuilder      = builder.Table{BufferFactory: ddlBufferFactory, ColumnMapper: columnMapper, ColumnOptionsMapper: sql.ColumnOptionsMapper, DropKeyMapper: dropKeyMapper}
 		indexBuilder      = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder, DropIndexOnTable: true}
 	)
 
@@ -58,7 +58,7 @@ func New(database *db.DB) rel.Adapter {
 
 // Open mysql connection using dsn.
 func Open(dsn string) (rel.Adapter, error) {
-	var database, err = db.Open("mysql", rewriteDsn(dsn))
+	database, err := db.Open("mysql", rewriteDsn(dsn))
 	return New(database), err
 }
 
@@ -66,19 +66,14 @@ func rewriteDsn(dsn string) string {
 	// force clientFoundRows=true
 	// this allows not found record check when updating a record.
 	if strings.ContainsRune(dsn, '?') {
-		dsn += "&clientFoundRows=true"
-	} else {
-		dsn += "?clientFoundRows=true"
+		return dsn + "&clientFoundRows=true"
 	}
-
-	return dsn
+	return dsn + "?clientFoundRows=true"
 }
 
 // MustOpen mysql connection using dsn.
 func MustOpen(dsn string) rel.Adapter {
-	var (
-		adapter, err = Open(dsn)
-	)
+	adapter, err := Open(dsn)
 
 	check(err)
 	return adapter
