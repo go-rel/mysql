@@ -18,7 +18,7 @@ func TestQuote_Panic(t *testing.T) {
 func TestQuote_ID(t *testing.T) {
 	quoter := Quote{}
 
-	var cases = []struct {
+	cases := []struct {
 		input string
 		want  string
 	}{
@@ -37,7 +37,7 @@ func TestQuote_ID(t *testing.T) {
 func TestQuote_Value(t *testing.T) {
 	quoter := Quote{}
 
-	var cases = []struct {
+	cases := []struct {
 		input string
 		want  string
 	}{
