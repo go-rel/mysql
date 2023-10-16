@@ -160,7 +160,7 @@ func TestRewriteDsn(t *testing.T) {
 
 func TestAdapter_MustOpen(t *testing.T) {
 	assert.Panics(t, func() {
-		_ = MustOpen(dsn())
+		_ = MustOpen("root@tcp(unknown_host:3306)/rel_test")
 	})
 }
 
