@@ -7,7 +7,6 @@ import (
 
 	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
-	"github.com/go-rel/sql"
 	"github.com/go-rel/sql/specs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
@@ -187,7 +186,7 @@ func TestAdapter_TableBuilder(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.result, func(t *testing.T) {
-			assert.Equal(t, test.result, adapter.(*sql.SQL).TableBuilder.Build(test.table))
+			assert.Equal(t, test.result, adapter.(*MySQL).TableBuilder.Build(test.table))
 		})
 	}
 }
@@ -219,7 +218,7 @@ func TestAdapter_TableBuilder_unsupportedDropKeyType(t *testing.T) {
 				},
 			}
 
-			assert.Panics(t, func() { adapter.(*sql.SQL).TableBuilder.Build(table) })
+			assert.Panics(t, func() { adapter.(*MySQL).TableBuilder.Build(table) })
 		})
 	}
 }
