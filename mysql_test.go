@@ -2,7 +2,6 @@ package mysql
 
 import (
 	"context"
-	"errors"
 	"os"
 	"testing"
 
@@ -159,9 +158,9 @@ func TestRewriteDsn(t *testing.T) {
 	assert.Contains(t, rewriteDsn("root@tcp(localhost:3306)/rel_test"), "?clientFoundRows=true")
 }
 
-func TestCheck(t *testing.T) {
+func TestAdapter_MustOpen(t *testing.T) {
 	assert.Panics(t, func() {
-		check(errors.New("error"))
+		_ = MustOpen(dsn())
 	})
 }
 
@@ -191,6 +190,13 @@ func TestAdapter_TableBuilder(t *testing.T) {
 			assert.Equal(t, test.result, adapter.(*sql.SQL).TableBuilder.Build(test.table))
 		})
 	}
+}
+
+func TestAdapter_Name(t *testing.T) {
+	adapter := MustOpen(dsn())
+	defer adapter.Close()
+
+	assert.Equal(t, Name, adapter.Name())
 }
 
 func TestAdapter_TableBuilder_unsupportedDropKeyType(t *testing.T) {

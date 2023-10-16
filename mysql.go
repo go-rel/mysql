@@ -24,6 +24,14 @@ import (
 	"github.com/go-rel/sql/builder"
 )
 
+// MySQL adapter.
+type MySQL struct {
+	sql.SQL
+}
+
+// Name of database type this adapter implements.
+const Name string = "mysql"
+
 // New mysql adapter using existing connection.
 // Existing connection needs to be created with `clientFoundRows=true` options for update and delete to works correctly.
 func New(database *db.DB) rel.Adapter {
@@ -42,17 +50,19 @@ func New(database *db.DB) rel.Adapter {
 		indexBuilder      = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder, DropIndexOnTable: true}
 	)
 
-	return &sql.SQL{
-		QueryBuilder:     queryBuilder,
-		InsertBuilder:    InsertBuilder,
-		InsertAllBuilder: insertAllBuilder,
-		UpdateBuilder:    updateBuilder,
-		DeleteBuilder:    deleteBuilder,
-		TableBuilder:     tableBuilder,
-		IndexBuilder:     indexBuilder,
-		Increment:        getIncrement(database),
-		ErrorMapper:      errorMapper,
-		DB:               database,
+	return &MySQL{
+		SQL: sql.SQL{
+			QueryBuilder:     queryBuilder,
+			InsertBuilder:    InsertBuilder,
+			InsertAllBuilder: insertAllBuilder,
+			UpdateBuilder:    updateBuilder,
+			DeleteBuilder:    deleteBuilder,
+			TableBuilder:     tableBuilder,
+			IndexBuilder:     indexBuilder,
+			Increment:        getIncrement(database),
+			ErrorMapper:      errorMapper,
+			DB:               database,
+		},
 	}
 }
 
@@ -74,9 +84,15 @@ func rewriteDsn(dsn string) string {
 // MustOpen mysql connection using dsn.
 func MustOpen(dsn string) rel.Adapter {
 	adapter, err := Open(dsn)
-
-	check(err)
+	if err != nil {
+		panic(err)
+	}
 	return adapter
+}
+
+// Name of database adapter.
+func (MySQL) Name() string {
+	return Name
 }
 
 func getIncrement(database *db.DB) int {
@@ -86,7 +102,10 @@ func getIncrement(database *db.DB) int {
 	)
 
 	if database != nil {
-		check(database.QueryRow("SHOW VARIABLES LIKE 'auto_increment_increment';").Scan(&variable, &increment))
+		err := database.QueryRow("SHOW VARIABLES LIKE 'auto_increment_increment';").Scan(&variable, &increment)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	return increment
@@ -140,10 +159,4 @@ func dropKeyMapper(typ rel.KeyType) string {
 	}
 
 	panic(fmt.Sprintf("drop key: unsupported key type `%s`", typ))
-}
-
-func check(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
