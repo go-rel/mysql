@@ -5,8 +5,8 @@ go 1.21
 toolchain go1.21.0
 
 require (
-	github.com/go-rel/primaryreplica v0.5.0
-	github.com/go-rel/rel v0.40.0
+	github.com/go-rel/primaryreplica v0.6.0
+	github.com/go-rel/rel v0.41.0
 	github.com/go-rel/sql v0.15.1-0.20230927020931-5b67559d2fe1
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/stretchr/testify v1.8.4
@@ -17,5 +17,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/serenize/snaker v0.0.0-20201027110005-a7ad2135616e // indirect
+	golang.org/x/text v0.13.0 // indirect
+	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
