@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"context"
+	db "database/sql"
 	"os"
 	"testing"
 
@@ -158,7 +159,15 @@ func TestRewriteDsn(t *testing.T) {
 }
 
 func TestAdapter_MustOpen(t *testing.T) {
+	t.Cleanup(func() {
+		dbOpen = db.Open
+	})
+
 	assert.Panics(t, func() {
+		dbOpen = func(driverName, dataSourceName string) (*db.DB, error) {
+			return nil, assert.AnError
+		}
+
 		_ = MustOpen("root@tcp(unknown_host:3306)/rel_test")
 	})
 }
