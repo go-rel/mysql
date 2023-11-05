@@ -66,9 +66,11 @@ func New(database *db.DB) rel.Adapter {
 	}
 }
 
+var dbOpen = db.Open
+
 // Open mysql connection using dsn.
 func Open(dsn string) (rel.Adapter, error) {
-	database, err := db.Open("mysql", rewriteDsn(dsn))
+	database, err := dbOpen("mysql", rewriteDsn(dsn))
 	return New(database), err
 }
 
