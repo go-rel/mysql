@@ -172,6 +172,12 @@ func TestAdapter_MustOpen(t *testing.T) {
 	})
 }
 
+func TestAdapter_MustOpenConnection(t *testing.T) {
+	assert.Panics(t, func() {
+		_ = MustOpen("root@tcp(unknown_host:3306)/rel_test")
+	})
+}
+
 func TestAdapter_TableBuilder(t *testing.T) {
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
