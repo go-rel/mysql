@@ -2,13 +2,12 @@ package mysql
 
 import (
 	"context"
-	"errors"
+	db "database/sql"
 	"os"
 	"testing"
 
 	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
-	"github.com/go-rel/sql"
 	"github.com/go-rel/sql/specs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
@@ -159,9 +158,23 @@ func TestRewriteDsn(t *testing.T) {
 	assert.Contains(t, rewriteDsn("root@tcp(localhost:3306)/rel_test"), "?clientFoundRows=true")
 }
 
-func TestCheck(t *testing.T) {
+func TestAdapter_MustOpen(t *testing.T) {
+	t.Cleanup(func() {
+		dbOpen = db.Open
+	})
+
 	assert.Panics(t, func() {
-		check(errors.New("error"))
+		dbOpen = func(driverName, dataSourceName string) (*db.DB, error) {
+			return nil, assert.AnError
+		}
+
+		_ = MustOpen("root@tcp(unknown_host:3306)/rel_test")
+	})
+}
+
+func TestAdapter_MustOpenConnection(t *testing.T) {
+	assert.Panics(t, func() {
+		_ = MustOpen("root@tcp(unknown_host:3306)/rel_test")
 	})
 }
 
@@ -188,9 +201,16 @@ func TestAdapter_TableBuilder(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.result, func(t *testing.T) {
-			assert.Equal(t, test.result, adapter.(*sql.SQL).TableBuilder.Build(test.table))
+			assert.Equal(t, test.result, adapter.(*MySQL).TableBuilder.Build(test.table))
 		})
 	}
+}
+
+func TestAdapter_Name(t *testing.T) {
+	adapter := MustOpen(dsn())
+	defer adapter.Close()
+
+	assert.Equal(t, Name, adapter.Name())
 }
 
 func TestAdapter_TableBuilder_unsupportedDropKeyType(t *testing.T) {
@@ -213,7 +233,7 @@ func TestAdapter_TableBuilder_unsupportedDropKeyType(t *testing.T) {
 				},
 			}
 
-			assert.Panics(t, func() { adapter.(*sql.SQL).TableBuilder.Build(table) })
+			assert.Panics(t, func() { adapter.(*MySQL).TableBuilder.Build(table) })
 		})
 	}
 }
