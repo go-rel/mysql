@@ -129,13 +129,19 @@ func errorMapper(err error) error {
 	}
 
 	switch msg[:errCodeIndex] {
-	case "Error 1062":
+	case "Error 1062 (23000)":
 		return rel.ConstraintError{
 			Key:  sql.ExtractString(msg, "key '", "'"),
 			Type: rel.UniqueConstraint,
 			Err:  err,
 		}
-	case "Error 1452":
+	case "Error 1451 (23000)":
+		return rel.ConstraintError{
+			Key:  sql.ExtractString(msg, "CONSTRAINT `", "`"),
+			Type: rel.ForeignKeyConstraint,
+			Err:  err,
+		}
+	case "Error 1452 (23000)":
 		return rel.ConstraintError{
 			Key:  sql.ExtractString(msg, "CONSTRAINT `", "`"),
 			Type: rel.ForeignKeyConstraint,
