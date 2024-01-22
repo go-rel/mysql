@@ -143,13 +143,7 @@ func errorMapper(err error) error {
 			Type: rel.UniqueConstraint,
 			Err:  err,
 		}
-	case "Error 1451":
-		return rel.ConstraintError{
-			Key:  sql.ExtractString(msg, "CONSTRAINT `", "`"),
-			Type: rel.ForeignKeyConstraint,
-			Err:  err,
-		}
-	case "Error 1452":
+	case "Error 1451", "Error 1452":
 		return rel.ConstraintError{
 			Key:  sql.ExtractString(msg, "CONSTRAINT `", "`"),
 			Type: rel.ForeignKeyConstraint,
