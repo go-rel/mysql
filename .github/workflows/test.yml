@@ -42,7 +42,7 @@ jobs:
           go test -race -coverprofile=coverage.txt -covermode=atomic ./...
         if: matrix.mysql == 8
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         if: matrix.mysql == 8
 
   primaryreplica:
