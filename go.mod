@@ -9,7 +9,7 @@ require (
 	github.com/go-rel/rel v0.41.0
 	github.com/go-rel/sql v0.16.0
 	github.com/go-sql-driver/mysql v1.6.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 )
 
 require (
