@@ -7,7 +7,7 @@ toolchain go1.21.0
 require (
 	github.com/go-rel/primaryreplica v0.6.0
 	github.com/go-rel/rel v0.42.0
-	github.com/go-rel/sql v0.16.0
+	github.com/go-rel/sql v0.17.0
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/stretchr/testify v1.9.0
 )
