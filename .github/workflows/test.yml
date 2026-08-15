@@ -42,8 +42,10 @@ jobs:
           go test -race -coverprofile=coverage.txt -covermode=atomic ./...
         if: matrix.mysql == 8
       - name: Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         if: matrix.mysql == 8
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   primaryreplica:
     name: Primary Replica
@@ -56,7 +58,7 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
       - name: Start mysql containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker compose -f "docker-compose.yml" up -d --build
       - name: Test
         env:
           TEST_PRIMARY_REPLICA: 'true'

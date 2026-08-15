@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   mariadb-master:
-    image: docker.io/bitnami/mariadb:10.6
+    image: docker.io/bitnamilegacy/mariadb:10.6
     ports:
       - '23306:3306'
     environment:
@@ -20,7 +20,7 @@ services:
       retries: 6
 
   mariadb-slave:
-    image: docker.io/bitnami/mariadb:10.6
+    image: docker.io/bitnamilegacy/mariadb:10.6
     ports:
       - '23307:3306'
     depends_on:
