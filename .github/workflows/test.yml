@@ -58,7 +58,7 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
       - name: Start mysql containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker compose -f "docker-compose.yml" up -d --build
       - name: Test
         env:
           TEST_PRIMARY_REPLICA: 'true'
