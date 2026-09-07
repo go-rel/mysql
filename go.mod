@@ -6,7 +6,7 @@ require (
 	github.com/go-rel/primaryreplica v0.6.0
 	github.com/go-rel/rel v0.43.0
 	github.com/go-rel/sql v0.17.0
-	github.com/go-sql-driver/mysql v1.10.0
+	github.com/go-sql-driver/mysql v1.10.1
 	github.com/stretchr/testify v1.12.1
 )
 
